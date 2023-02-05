@@ -1,5 +1,5 @@
 { Game   : metro.exe
-  Version:  [https://steamdb.info/app/286690/patchnotes/3790582]
+  Version: [https://steamdb.info/app/286690/patchnotes/3790582]
   Date   : 2023-02-04
   Author : NightFyre
 
@@ -8,10 +8,15 @@
   Some examples on utilizing this information would be to obtain a pointer to rcx
   A Pointer to RCX would allow you to modify the class members.
   MilitaryGradeAmmo is offset 0x4F4
+
+  UPDATE:
+         - Upon further reversing it seems that this instruction was also tied into AR ammo
+         - This was tested at the start point ammo bench
+         - This class seems to share with Artyom . . . 0x70 is a Vector 3 for LocalPlayer Position
 }
 
 [ENABLE]
-aobscanmodule(ChangeMilitaryGradeAmmo,metro.exe,89 91 F4 04 00 00) // should be unique
+aobscanmodule(ChangeMilitaryGradeAmmo,metro.exe,89 91 F4 04 00 00)
 alloc(newmem,$1000,ChangeMilitaryGradeAmmo)
 
 label(code)
